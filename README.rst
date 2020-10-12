@@ -14,6 +14,7 @@ usage
 
 angular
 =======
+.. [DEMO] https://stackblitz.com/edit/angular-nvicon
 - npm install nvicon -g 
 - creat a component in your angular project
 - goto the comonent dir
@@ -24,7 +25,7 @@ angular
 - when production use  `nvicon_rm_icon`_  remove all unnecessary icons
 - other cli `nvicon_export_svg`_   `nvicon_import_svg`_    `nvicon_show_icons`_   `nvicon_reset`_
 
-.. [DEMO] https://stackblitz.com/edit/angular-nvicon
+
 
 
 
