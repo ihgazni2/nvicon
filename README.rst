@@ -202,8 +202,7 @@ from local-dir
         nvicon_add_icon -path task type  -svg ../resource/fixed.svg
         nvicon_add_icon -path task type  -svg ../resource/temp.svg
         nvicon_add_icon -path task brief action  -svg ../resource/feedback.svg
-
-
+        
         @#nvicon_show_icons
         [
           'bear.blue_and_pink_double',
@@ -359,7 +358,7 @@ CODE AND RESOURE REFERECE(THANKS TO)
 ===================================
 - https://medium.com/angular-in-depth/how-to-create-an-icon-library-in-angular-4f8863d95a 
 - https://github.com/lipis/flag-icon-css
-
+- https://www.flaticon.com/
 
 API
 ===
