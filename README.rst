@@ -19,10 +19,10 @@ angular
 - goto the comonent dir
 - add then do the following
 - `nvicon_init`_
-- nvicon_add_icon                            to add your svg files to svg-icons.ts
+- `nvicon_add_icon`_                            to add your svg files to svg-icons.ts
 - use the component in your page
-- when production, use nvicon_remove_icon remove all unnecessary icons
-- other cli nvicon_export_svg,nvicon_import_svg,nvicon_show_icons,nvicon_reset
+- when production, use `nvicon_remove_icon`_ remove all unnecessary icons
+- other cli `nvicon_export_svg`_,`nvicon_import_svg`_,`nvicon_show_icons`_,`nvicon_reset`_
 
 stackblitz [DEMO]_ 
 .. [DEMO] https://stackblitz.com/edit/angular-nvicon
@@ -91,8 +91,8 @@ stackblitz [DEMO]_
 other
 =====
 - npm install nvicon -g
-- nvicon_init
-- nvicon_add_icon         to add your svg files to svg-icons.ts 
+- `nvicon_init`_
+- `nvicon_add_icon`_         to add your svg files to svg-icons.ts 
 - tsc svg-icons.ts        to generate a svg-cons.js file for using
 
 
