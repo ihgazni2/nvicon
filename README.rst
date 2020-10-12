@@ -23,7 +23,7 @@ angular
 - `nvicon_add_icon`_                            to add your svg files to svg-icons.ts
 - use the component in your page
 - when production use  `nvicon_rm_icon`_  remove all unnecessary icons
-- other cli `nvicon_export_svg`_   `nvicon_import_svg`_    `nvicon_show_icons`_   `nvicon_reset`_
+- other cli \[`nvicon_export_svg`_ ,  `nvicon_import_svg`_  ,  `nvicon_show_icons`_  , `nvicon_reset`_\]
 
 
 
