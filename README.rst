@@ -26,8 +26,6 @@ angular
 
 stackblitz [DEMO]_ 
 
-.. [DEMO] https://stackblitz.com/edit/angular-nvicon
-
 
 
     ::
@@ -393,3 +391,6 @@ generated svg-icons.ts
         '<svg t="1599010366542" class="icon" viewbox="0 0 1024  .....</svg>'
         >
 
+
+
+.. [DEMO] https://stackblitz.com/edit/angular-nvicon
