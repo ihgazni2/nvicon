@@ -25,7 +25,9 @@ angular
 - other cli `nvicon_export_svg`_   `nvicon_import_svg`_    `nvicon_show_icons`_   `nvicon_reset`_
 
 stackblitz [DEMO]_ 
+
 .. [DEMO] https://stackblitz.com/edit/angular-nvicon
+
 
 
     ::
