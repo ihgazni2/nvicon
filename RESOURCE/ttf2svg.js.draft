@@ -1,0 +1,215 @@
+#https://developer.apple.com/fonts/TrueType-Reference-Manual/
+
+
+https://www.flaticon.com/svg/static/icons/svg/2913/2913856.svg
+https://www.flaticon.com/free-icons/bear/2
+https://www.flaticon.com/packs/emoticons-set
+https://github.com/kreuzerk/svg-to-ts
+
+
+
+https://stackblitz.com/edit/angular-nvicon
+
+tsc svg-icons.ts
+import * as svg_icons from "./svg-icons"
+
+ng g c svg-icons 
+
+
+
+
+
+
+const wawoff = require('wawoff2');
+const fs = require('fs')
+var woff2 = fs.readFileSync("material-icons.2.woff2")
+var ttf = wawoff.decompress(woff2)
+var p = ttf.then(
+    r=> {
+        let buf = Buffer.from(r)
+        fs.writeFileSync("material-icons.2.ttf", buf);
+    }
+).then(r=>console.log(r))
+
+const wawoff = require('wawoff2');
+const fs = require('fs')
+var woff2 = fs.readFileSync("material-icons.woff2")
+var ttf = wawoff.decompress(woff2)
+var p = ttf.then(
+    r=> {
+        let buf = Buffer.from(r)
+        fs.writeFileSync("material-icons.ttf", buf);
+    }
+).then(r=>console.log(r))
+
+npm install wawoff2
+//npm install ttf2svg
+npm install webfont
+
+
+const ttf2svg = require('ttf2svg') 
+var ttf = fs.readFileSync("material-icons.2.ttf")
+var svg = ttf2svg(ttf)
+fs.writeFileSync("material-icons.glyph-svg", svg);
+
+
+const svg2ttf = require('svg2ttf')
+var ttf = svg2ttf(svg)
+fs.writeFileSync("material-icons.3.ttf", ttf);
+
+
+var ttf = fs.readFileSync("material-icons.2.ttf");
+const wawoff = require('wawoff2');
+var woff2 = wawoff.compress(ttf)
+var p = woff2.then(
+    r=> {
+        let buf = Buffer.from(r)
+        fs.writeFileSync("material-icons.3.woff2", buf);
+    }
+).then(r=>console.log(r))
+
+
+
+var nvhtml = require("nvhtml")
+var tree = new nvhtml.Html(svg)
+var sdfs = tree.$sdfs()
+arr = sdfs.filter(r=>r.tag==='glyph')
+
+加入字体
+
+<style>
+@font-face {
+    font-family: "Sample font";
+    src: url("data:application/font-woff;charset=utf-8;base64,...");
+}
+</style>
+
+
+<!DOCTYPE HTML>
+<html>
+<body>
+
+<div style="height:50px;width:50px;background-color:blue;color:red;">
+    <svg viewBox="0 0 512 512" fill="currentColor">
+        <path d="M469 469L469 427L43 427L43 469L469 469M149 288L149 224L363 224L363 288L149 288M43 85L43 43L469 43L469 85L43 85Z">
+        </path>
+    </svg>
+</div>
+</body>
+</html>
+
+
+bgclr  background-color
+fgclr  frontground color
+
+
+
+##############################################################################
+@angular# tree -af | egrep css | grep parser
+│   │   │   ├── ./compiler/esm2015/src/css_parser
+│   │   │   │   ├── ./compiler/esm2015/src/css_parser/css_ast.js
+│   │   │   │   ├── ./compiler/esm2015/src/css_parser/css_lexer.js
+│   │   │   │   └── ./compiler/esm2015/src/css_parser/css_parser.js
+│   │   ├── ./compiler/src/css_parser
+│   │   │   ├── ./compiler/src/css_parser/css_ast.d.ts
+│   │   │   ├── ./compiler/src/css_parser/css_ast.js
+│   │   │   ├── ./compiler/src/css_parser/css_lexer.d.ts
+│   │   │   ├── ./compiler/src/css_parser/css_lexer.js
+│   │   │   ├── ./compiler/src/css_parser/css_parser.d.ts
+│   │   │   └── ./compiler/src/css_parser/css_parser.js
+
+-rwxr-xr-x 1 root root  49120 Oct 26  1985 selector.js
+-rwxr-xr-x 1 root root  68444 Oct 26  1985 shadow_css.js
+-rwxr-xr-x 1 root root  13092 Oct 26  1985 style_compiler.js
+-rwxr-xr-x 1 root root   6124 Oct 26  1985 style_url_resolver.js
+-rwxr-xr-x 1 root root   3988 Oct 26  1985 summary_resolver.js
+##############################################################################
+https://github.com/google/material-design-icons/blob/master/update/icons.py
+
+from fontTools import ttLib
+import functools
+from pathlib import Path
+
+
+_PUA_CODEPOINTS = [
+    range(0xE000, 0xF8FF + 1),
+    range(0xF0000, 0xFFFFD + 1),
+    range(0x100000, 0x10FFFD + 1)
+]
+
+
+def _is_pua(codepoint):
+  return any(r for r in _PUA_CODEPOINTS if codepoint in r)
+
+def _cmap(ttfont):
+  def _cmap_reducer(acc, u):
+    acc.update(u)
+    return acc
+  unicode_cmaps = (t.cmap for t in ttfont['cmap'].tables if t.isUnicode())
+  return functools.reduce(_cmap_reducer, unicode_cmaps, {})
+
+
+def _ligatures(ttfont):
+  liga_lookups = tuple(
+      filter(lambda l: l.LookupType == 4,
+             ttfont['GSUB'].table.LookupList.Lookup))
+  for lookup in liga_lookups:
+    for subtable in lookup.SubTable:
+      yield subtable.ligatures
+
+
+def enumerate(font_file: Path):
+  """Yields (icon name, codepoint) tuples for icon font."""
+  with ttLib.TTFont(font_file) as ttfont:
+    cmap = _cmap(ttfont)
+    rev_cmap = {v: k for k, v in cmap.items()}
+    for lig_root in _ligatures(ttfont):
+      for first_glyph_name, ligatures in lig_root.items():
+        for ligature in ligatures:
+          glyph_names = (first_glyph_name,) + tuple(ligature.Component)
+          print(glyph_names)
+          icon_name = ''.join(chr(rev_cmap[n]) for n in glyph_names)
+          codepoint = rev_cmap[ligature.LigGlyph]
+          if not _is_pua(codepoint):
+            continue
+          yield (icon_name, codepoint)
+
+g = enumerate("material-icons.2.ttf")
+
+npm install opentype.js
+const opentype = require('opentype.js');
+
+t = opentype.loadSync("material-icons.2.ttf")
+>>> g.__next__()
+('1k_plus', 59741)
+>>> g.__next__()
+('19mp', 59739)
+>>>
+
+
+
+> t.tables.gsub.lookups[0].subtables[0].ligatureSets[0][0].components
+[ 24, 13, 29, 25, 34, 32 ]
+> t.tables.gsub.lookups[0].subtables[0].ligatureSets[0][0].ligGlyph
+1068
+
+t.tables.cmap.glyphIndexMap
+ '59741': 1068,
+
+function mirror() {
+    let d = {}
+    for(let k in t.tables.cmap.glyphIndexMap) {
+        d[t.tables.cmap.glyphIndexMap[k]] = k
+    }
+    return(d)
+}
+
+[ 24, 13, 29, 25, 34, 32 ].map(r=>mirror(r))
+> [ 24, 13, 29, 25, 34, 32 ].map(r=>md[r])
+[ '107', '95', '112', '108', '117', '115' ]
+>
+
+> [ 24, 13, 29, 25, 34, 32 ].map(r=>md[r]).map(r=>String.fromCodePoint(r))
+[ 'k', '_', 'p', 'l', 'u', 's' ]
+>
+
